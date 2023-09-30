@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 // Static file
-app.use(express.static(path.join(__dirname, 'public')));
+		app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -28,5 +28,5 @@ route(app);
 
 // Listen on port
 app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port ${port}`);
 });

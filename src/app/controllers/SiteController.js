@@ -1,10 +1,11 @@
+// import Course to use Course.find() method to get all courses from database (MongoDB) to render to client side (browser)
 const Course = require('../models/Course');
 
+// Purpose: Site controller for home page (src/views/home.pug) to handle HTTP requests from client side (browser) to server side (NodeJS)
 class SiteController {
 	// [GET] /
 	index(req, res) {
-		// res.render('home');
-
+		// handle to get all courses from database (MongoDB) to render to client side (browser)
 		Course.find({})
 			.then(function (courses) {
 				res.json(courses);

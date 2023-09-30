@@ -1,24 +1,39 @@
 <div class='mt-4'>
-	<form method="GET" action="/news">
+	<form method='POST' action=''>
 		<div class='form-group'>
 
-			<label for='search-input'>Key word</label>
+			<label for='keyword-input'>Key word</label>
 			<input
 				name='q'
 				type='text'
 				class='form-control'
-				id='search-input'
+				id='keyword-input'
 				placeholder='Enter key word...'
 			/>
+		</div>
 
+		<div class='form-group'>
+			<label for='age-input'>Age</label>
 			<input
 				name='age'
 				type='text'
 				class='form-control'
-				id='search-input'
+				id='age-input'
 				placeholder='Enter age...'
 			/>
+		</div>
 
+		<div class='form-group'>
+			<label for='gender-input'>Gender</label>
+			<select
+				name='age'
+				class='form-control'
+				id='gender-input'
+			>
+			<option value="">-- Select gender --</option>
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+			</select>
 		</div>
 
 		<button type='submit' class='btn btn-primary'>Search</button>

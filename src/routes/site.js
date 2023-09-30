@@ -7,7 +7,7 @@ const router = express.Router();
 const siteController = require('../app/controllers/SiteController');
 
 // Handle HTTP requests from client side (browser) to server side (NodeJS)
-router.use('/search', siteController.search);
-router.use('/', siteController.index);
+router.get('/search', siteController.search);
+router.get('/', siteController.index);
 
 module.exports = router;

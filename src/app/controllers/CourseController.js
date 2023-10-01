@@ -14,8 +14,6 @@ class CourseController {
 			.then((courses) => {
 				// render to client side (browser) with home.hbs file in src/views folder
 				res.render('home', { courses: mongooseObjectArrToOjbectArr(courses) });
-
-				// res.json(courses);
 			})
 			.catch(next);
 	}
@@ -29,6 +27,26 @@ class CourseController {
 				});
 			})
 			.catch(next);
+	}
+
+	// [GET] /create
+	create(req, res, next) {
+		res.render('courses/create');
+	}
+
+	// [POST] /store
+	store(req, res, next) {
+		const formData = req.body;
+		formData.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
+
+		const course = new Course(formData);
+
+		course
+			.save()
+			.then(() => res.redirect('/'))
+			.catch((error) => {
+				console.log('error', error);
+			});
 	}
 }
 

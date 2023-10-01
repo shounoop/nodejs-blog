@@ -1,23 +1,48 @@
 <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
-	<a class='navbar-brand' href='/'>Home</a>
-	<button
-		class='navbar-toggler'
-		type='button'
-		data-toggle='collapse'
-		data-target='#navbarSupportedContent'
-		aria-controls='navbarSupportedContent'
-		aria-expanded='false'
-		aria-label='Toggle navigation'
-	>
-		<span class='navbar-toggler-icon'></span>
-	</button>
+	<div class='container'>
+		<a class='navbar-brand' href='/'>Home</a>
+		<button
+			class='navbar-toggler'
+			type='button'
+			data-toggle='collapse'
+			data-target='#navbarSupportedContent'
+			aria-controls='navbarSupportedContent'
+			aria-expanded='false'
+			aria-label='Toggle navigation'
+		>
+			<span class='navbar-toggler-icon'></span>
+		</button>
 
-	<div class='collapse navbar-collapse' id='navbarSupportedContent'>
-		<ul class='navbar-nav mr-auto'>
-			<li class='nav-item active'>
-				<a class='nav-link' href='/courses/create'>Upload course
-					<span class='sr-only'>(current)</span></a>
-			</li>
-		</ul>
+		<div class='collapse navbar-collapse' id='navbarSupportedContent'>
+			<ul class='navbar-nav ml-auto'>
+				<li class='nav-item dropdown'>
+					<a
+						class='nav-link dropdown-toggle'
+						href='#'
+						role='button'
+						data-toggle='dropdown'
+						aria-expanded='false'
+					>
+						<img
+							src='https://images.unsplash.com/photo-1695637097859-705a36400d2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1882&q=80'
+							alt=''
+							class='user-avatar'
+						/>
+						<span>Shounoop</span>
+					</a>
+
+					<div class='dropdown-menu'>
+						<a class='dropdown-item' href='/courses/create'>Upload course</a>
+
+						<div class='dropdown-divider'></div>
+						<a class='dropdown-item' href='/me/stored/courses'>My courses</a>
+						<a class='dropdown-item' href='/me/stored/news'>My news</a>
+
+						<div class='dropdown-divider'></div>
+						<a class='dropdown-item' href='#'>Logout</a>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 </nav>

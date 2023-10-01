@@ -1,7 +1,7 @@
 <div class='mt-4'>
-	<h3>Đăng khóa học</h3>
+	<h3>Upload Course</h3>
 
-	<form method='POST' action='/courses/store'>
+	<form method='POST' action='/courses/store' class='mt-4'>
 		<div class='mb-3'>
 			<label for='name' class='form-label'>name</label>
 			<input type='text' name='name' class='form-control' id='name' />
@@ -9,12 +9,11 @@
 
 		<div class='mb-3'>
 			<label for='description' class='form-label'>description</label>
-			<input
-				type='text'
+			<textarea
 				name='description'
 				class='form-control'
 				id='description'
-			/>
+			></textarea>
 		</div>
 
 		<div class='mb-3'>
@@ -27,6 +26,6 @@
 			<input type='text' name='level' class='form-control' id='level' />
 		</div>
 
-		<button type='submit' class='btn btn-primary'>Thêm khóa học</button>
+		<button type='submit' class='btn btn-primary'>Create</button>
 	</form>
 </div>

@@ -9,7 +9,8 @@ const courseController = require('../app/controllers/CourseController');
 // Handle HTTP requests from client side (browser) to server side (NodeJS)
 router.post('/store', courseController.store);
 router.get('/create', courseController.create);
+router.get('/:id/edit', courseController.edit);
+router.put('/:id', courseController.update);
 router.get('/:slug', courseController.show);
-router.get('/', courseController.index);
 
 module.exports = router;

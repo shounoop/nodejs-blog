@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
+var methodOverride = require('method-override');
 
 // Import routes from routes folder to handle HTTP requests from client side (browser) to server side (NodeJS)
 const route = require('./routes');
@@ -16,6 +17,9 @@ db.connect();
 const app = express();
 const port = 3000;
 
+// This to use PUT, DELETE method in form
+app.use(methodOverride('_method'));
+
 // Static file (public folder) middleware to serve static files (css, js, images, etc.) from server side to client side (browser)
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -29,7 +33,13 @@ app.use(express.json());
 app.use(morgan('combined'));
 
 // Set up template engine to render HTML file from server side to client side (browser) with express-handlebars package
-app.engine('hbs', engine({ extname: '.hbs' }));
+app.engine(
+	'hbs',
+	engine({
+		extname: '.hbs',
+		helpers: { sum: (a, b) => a + b },
+	})
+);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resource', 'views'));
 

@@ -8,5 +8,6 @@ const meController = require('../app/controllers/MeController');
 
 // Handle HTTP requests from client side (browser) to server side (NodeJS)
 router.get('/stored/courses', meController.storedCourses);
+router.get('/trash/courses', meController.deletedCourses);
 
 module.exports = router;

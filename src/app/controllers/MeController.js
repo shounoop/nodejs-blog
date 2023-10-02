@@ -13,6 +13,17 @@ class MeController {
 			)
 			.catch(next);
 	}
+
+	// [GET] /trash/courses
+	deletedCourses(req, res, next) {
+		Course.findWithDeleted({ deleted: true })
+			.then((courses) =>
+				res.render('me/deleted-courses', {
+					courses: mongooseObjectArrToOjbectArr(courses),
+				})
+			)
+			.catch(next);
+	}
 }
 
 module.exports = new MeController();

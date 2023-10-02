@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 // Init slug with mongoose-slug-generator package (NodeJS) to handle data from server side (NodeJS) to database (MongoDB)
 const slug = require('mongoose-slug-generator');
 
-// set slug to be unique in database (MongoDB)
-mongoose.plugin(slug);
+const mongooseDelete = require('mongoose-delete');
 
 // Init Schema with mongoose package (NodeJS) to handle data from server side (NodeJS) to database (MongoDB)
 const Schema = mongoose.Schema;
@@ -22,5 +21,14 @@ const Course = new Schema(
 	},
 	{ timestamps: true }
 );
+
+// add plugin to mongoose to handle slug to be unique in database (MongoDB)
+mongoose.plugin(slug);
+
+// add plugin to Course model to handle soft delete
+Course.plugin(mongooseDelete, {
+	deletedAt: true,
+	overrideMethods: 'all',
+});
 
 module.exports = mongoose.model('Course', Course);

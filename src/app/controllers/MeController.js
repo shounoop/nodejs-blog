@@ -5,9 +5,10 @@ const Course = require('../models/Course');
 class MeController {
 	// [GET] /stored/courses
 	storedCourses(req, res, next) {
-		Course.find({})
-			.then((courses) =>
+		Promise.all([Course.find({}), Course.countWithDeleted({ deleted: true })])
+			.then(([courses, deleteCount]) =>
 				res.render('me/stored-courses', {
+					deleteCount,
 					courses: mongooseObjectArrToOjbectArr(courses),
 				})
 			)

@@ -1,8 +1,6 @@
 // import Course to use Course.find() method to get all courses from database (MongoDB) to render to client side (browser)
-const {
-	mongooseObjectArrToOjbectArr,
-	mongooseObjectToOjbect,
-} = require('../../util/mongoose');
+const { mongooseObjectToOjbect } = require('../../util/mongoose');
+
 const Course = require('../models/Course');
 
 // Purpose: Site controller for home page (src/views/home.pug) to handle HTTP requests from client side (browser) to server side (NodeJS)
@@ -33,9 +31,7 @@ class CourseController {
 		course
 			.save()
 			.then(() => res.redirect('/me/stored/courses'))
-			.catch((error) => {
-				console.log('error', error);
-			});
+			.catch(next);
 	}
 
 	// [GET] /:id/edit

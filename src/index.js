@@ -7,6 +7,9 @@ var methodOverride = require('method-override');
 // Import routes from routes folder to handle HTTP requests from client side (browser) to server side (NodeJS)
 const route = require('./routes');
 
+// Import custom middleware to handle sort data from client side (browser) to server side (NodeJS)
+const SortMiddleware = require('./app/middlewares/SortMiddleware');
+
 // Import DB from config folder to connect to DB (MongoDB) with mongoose package (NodeJS) to handle data from server side (NodeJS) to database (MongoDB)
 const db = require('./config/db');
 
@@ -16,6 +19,9 @@ db.connect();
 // Init app with express framework (NodeJS) to handle HTTP request from client side (browser) to server side (NodeJS)
 const app = express();
 const port = 3000;
+
+// Middleware to handle sort data from client side (browser) to server side (NodeJS)
+app.use(SortMiddleware);
 
 // This to use PUT, DELETE method in form
 app.use(methodOverride('_method'));
@@ -37,7 +43,31 @@ app.engine(
 	'hbs',
 	engine({
 		extname: '.hbs',
-		helpers: { sum: (a, b) => a + b },
+		helpers: {
+			sum: (a, b) => a + b,
+			sortable: (field, sort) => {
+				const currentSortType = field === sort.column ? sort.type : 'default';
+
+				const icons = {
+					default: 'oi oi-elevator',
+					desc: 'oi oi-sort-descending',
+					asc: 'oi oi-sort-ascending',
+				};
+
+				const types = {
+					default: 'desc',
+					desc: 'asc',
+					asc: 'desc',
+				};
+
+				const icon = icons[currentSortType];
+				const nextType = types[currentSortType];
+
+				return `<a href="?_sort&column=${field}&type=${nextType}">
+							<span class="${icon}"></span>
+						</a>`;
+			},
+		},
 	})
 );
 app.set('view engine', 'hbs');
